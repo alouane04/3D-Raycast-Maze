@@ -6,7 +6,7 @@
 /*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 08:43:30 by ariahi            #+#    #+#             */
-/*   Updated: 2022/12/28 10:49:57 by eel-moun         ###   ########.fr       */
+/*   Updated: 2022/12/28 11:13:29 by eel-moun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <string.h>
 #include <fcntl.h>
 #include "libft/libft.h"
+#include "gnl/get_next_line.h"
 
 typedef struct s_input{
     char	*no;
