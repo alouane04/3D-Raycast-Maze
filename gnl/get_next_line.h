@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-moun <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 21:52:54 by eel-moun          #+#    #+#             */
-/*   Updated: 2022/03/31 21:52:59 by eel-moun         ###   ########.fr       */
+/*   Updated: 2022/12/28 11:33:40 by eel-moun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+# define BUFFER_SIZE = 1024
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
