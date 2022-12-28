@@ -6,7 +6,7 @@
 /*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 21:52:54 by eel-moun          #+#    #+#             */
-/*   Updated: 2022/12/28 11:33:40 by eel-moun         ###   ########.fr       */
+/*   Updated: 2022/12/28 12:09:24 by eel-moun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
-size_t	ft_strlen(const char *s);
-char	*ft_strchr(char *s, int c);
-char	*ft_strjoin(char *s, char *buff);
+size_t	ft_strlen_utils(const char *s);
+char	*ft_strchr_utils(char *s, int c);
+char	*ft_strjoin_utils(char *s, char *buff);
 char	*get_next_line(int fd);
 char	*get_the_line(char *buffer);
 char	*get_the_res(char *buffer);
