@@ -1,13 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ariahi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/27 18:44:20 by ariahi            #+#    #+#             */
-/*   Updated: 2022/12/28 08:44:05 by ariahi           ###   ########.fr       */
+/*   Created: 2021/11/12 00:29:35 by ariahi            #+#    #+#             */
+/*   Updated: 2021/11/16 13:05:50 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3D.h"
+#include "libft.h"
+
+char	*ft_strdup(const char *s1)
+{
+	size_t	len;
+	char	*s;
+
+	len = ft_strlen(s1) + 1;
+	s = (char *)malloc(sizeof(char) * len);
+	if (!s)
+		return (NULL);
+	return (ft_memmove(s, s1, len));
+}
