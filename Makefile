@@ -8,7 +8,7 @@ FLAGS = -Wall -Wextra -Werror
 
 OBJ = $(SRC:.c=.o)
 
-$(NAME): cub3d.h $(OBJ) libft/libft.a
+$(NAME): cube3D.h $(OBJ) libft/libft.a
 	$(CC) $(FLAGS) -o $(NAME) $(SRC) libft/libft.a
 
 %.o : %.c
