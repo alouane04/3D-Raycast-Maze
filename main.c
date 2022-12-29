@@ -100,9 +100,9 @@ int	check_line(char *str, t_input *input)
 		return (check_texture(str, input), 0);
 	else if (!ft_strncmp(str, "EA", 2))
 		return (check_texture(str, input), 0);
-	else if (!ft_strncmp(str, "F", 2))
+	else if (!ft_strncmp(str, "F", 1))
 		return (check_texture(str, input), 0);
-	else if (!ft_strncmp(str, "C", 2))
+	else if (!ft_strncmp(str, "C", 1))
 		return (check_texture(str, input), 0);
 	else if (!check_if_empty(input))
 		return (0);
@@ -116,14 +116,16 @@ t_input	*stock_input(int fd, t_input *input)
 	while(1)
 	{
 		str = get_next_line(fd);
-		if(*str == '\0')
+		if (!str)
+			return (NULL);
+		else if(*str == '\0')
 			break;
-		else if (!str)
-			return (free(input), NULL);
+		printf("%s\n", str);
 		if (check_line(str, input))
 			return (ft_putendl_fd("Error invalid map", 2), NULL);
 		free(str);
 	}
+		printf("test\n");
 	return (free(str), input);
 }
 
@@ -136,11 +138,12 @@ int main(int ac, char **av)
 		return (ft_putendl_fd("Error invalid argument", 2), 1);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
- 	return (ft_putendl_fd("Error can't open map", 2), 1);
+ 		return (ft_putendl_fd("Error can't open map", 2), 1);
 	if (check_map_name(av[1]))
 		return (ft_putendl_fd("Error invalid map name", 2), 1);
 	init_input(&input);
 	if (stock_input(fd, &input))
-
+		printf("done\n");
+	
 	return (0);
 }
