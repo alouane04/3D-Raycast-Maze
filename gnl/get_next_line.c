@@ -6,7 +6,7 @@
 /*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 21:47:07 by eel-moun          #+#    #+#             */
-/*   Updated: 2022/12/29 12:42:59 by eel-moun         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:31:20 by eel-moun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,7 @@ char	*get_the_line(char *buffer)
 		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	if (buffer[i] == '\n')
-		line = malloc(sizeof(char) * (i + 2));
-	else
-		line = malloc(sizeof(char) * (i + 1));
+	line = malloc(sizeof(char) * (i + 1));
 	if (!line)
 		return (NULL);
 	i = 0;
@@ -59,8 +56,6 @@ char	*get_the_line(char *buffer)
 		line[i] = buffer[i];
 		i++;
 	}
-	if (buffer[i] == '\n')
-		line[i++] = '\n';
 	return (line[i] = '\0', line);
 }
 

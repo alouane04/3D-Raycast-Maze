@@ -1,4 +1,4 @@
-SRC = main.c gnl/get_next_line.c gnl/get_next_line_utils.c
+SRC = main.c gnl/get_next_line.c gnl/get_next_line_utils.c parsing_checks.c parsing_stock.c parsing_utils.c
 
 NAME = cub3D
 
