@@ -174,6 +174,6 @@ int main(int ac, char **av)
 		return (ft_putendl_fd("Error invalid map name", 2), 1);
 	init_input(&input);
 	if (stock_input(fd, &input))
-
+		printf("%s\n", input.no);
 	return (0);
 }
