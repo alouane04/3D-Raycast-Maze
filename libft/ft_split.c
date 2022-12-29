@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ariahi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 06:27:52 by ariahi            #+#    #+#             */
-/*   Updated: 2021/11/28 10:41:02 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/12/29 14:23:08 by eel-moun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	count_s(char const *s, char c)
 	return (count);
 }
 
-static void	ft_free(char **s)
+void	ft_free(char **s)
 {
 	int	i;
 
