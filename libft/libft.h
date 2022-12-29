@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 10:49:10 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/22 15:20:44 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/12/29 14:23:45 by eel-moun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,7 @@ void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 long long	ft_atoll(const char *str);
+void		ft_free(char **s);
+
 
 #endif
