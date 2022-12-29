@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-moun <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 21:47:07 by eel-moun          #+#    #+#             */
-/*   Updated: 2022/03/31 21:49:18 by eel-moun         ###   ########.fr       */
+/*   Updated: 2022/12/28 19:02:59 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "get_next_line.h"
 
 char	*get_the_res(char *buffer)
@@ -25,7 +26,7 @@ char	*get_the_res(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	str = malloc(sizeof(char) * (ft_strlen(buffer) - i + 1));
+	str = malloc(sizeof(char) * (ft_strlen_utils(buffer) - i + 1));
 	if (!str)
 		return (NULL);
 	i++;
@@ -72,13 +73,13 @@ char	*get_the_buffer(int fd, char *buffer)
 	if (!str)
 		return (NULL);
 	r = 1;
-	while (!ft_strchr(buffer, '\n') && r != 0)
+	while (!ft_strchr_utils(buffer, '\n') && r != 0)
 	{
 		r = read(fd, str, BUFFER_SIZE);
 		if (r == -1)
 			return (free(str), NULL);
 		str[r] = '\0';
-		buffer = ft_strjoin(buffer, str);
+		buffer = ft_strjoin_utils(buffer, str);
 	}
 	return (free(str), buffer);
 }

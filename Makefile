@@ -1,14 +1,14 @@
-SRC = main.c
+SRC = main.c gnl/get_next_line.c gnl/get_next_line_utils.c
 
 NAME = cub3D
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 OBJ = $(SRC:.c=.o)
 
-$(NAME): cube3D.h $(OBJ) libft/libft.a
+$(NAME): cube3D.h gnl/get_next_line.h $(OBJ) libft/libft.a
 	$(CC) $(FLAGS) -o $(NAME) $(SRC) libft/libft.a
 
 %.o : %.c
