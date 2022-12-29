@@ -6,11 +6,12 @@
 /*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 18:44:20 by ariahi            #+#    #+#             */
-/*   Updated: 2022/12/28 14:44:57 by eel-moun         ###   ########.fr       */
+/*   Updated: 2022/12/28 15:27:32 by eel-moun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3D.h"
+
 
 t_list	*stock_input(int fd)
 {
@@ -25,6 +26,7 @@ t_list	*stock_input(int fd)
 			break;
 		else if(!str)
 			return(free(input), NULL);
+		check_line();	
 		ft_lstadd_back(&input, ft_lstnew(str));
 		free(str);
 	}
