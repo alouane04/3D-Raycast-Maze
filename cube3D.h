@@ -6,7 +6,7 @@
 /*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 08:43:30 by ariahi            #+#    #+#             */
-/*   Updated: 2022/12/29 16:37:21 by eel-moun         ###   ########.fr       */
+/*   Updated: 2022/12/29 18:46:55 by eel-moun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,14 @@ typedef struct s_input{
 	t_list *map;
 } t_input;
 
+
+int	*stock_rgb(char *str);
+void	init_input(t_input	*input);
+char **check_rgb(char *str);
+int	check_map_name(char *name);
+int check_texture(char *str, t_input *input);
+int	check_line(char *str, t_input *input);
+int	stock_input(int fd, t_input *input);
+int check_color(char *str, t_input *input);
+void free_ip(t_input *input);
 #endif
