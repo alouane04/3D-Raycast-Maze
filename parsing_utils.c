@@ -1,6 +1,6 @@
 #include "cube3D.h"
 
-void free_ip(t_input *input)
+void free_input(t_input *input)
 {
     if(input->no)
         free(input->no);

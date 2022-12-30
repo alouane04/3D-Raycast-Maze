@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3D.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 08:43:30 by ariahi            #+#    #+#             */
-/*   Updated: 2022/12/29 18:46:55 by eel-moun         ###   ########.fr       */
+/*   Updated: 2022/12/30 19:29:01 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,21 @@ typedef struct s_input{
 	char	*we;
 	int		*f;
 	int		*c;
-	t_list *map;
+	char 	**map;
 } t_input;
 
-
-int	*stock_rgb(char *str);
+int		*stock_rgb(char *str);
 void	init_input(t_input	*input);
-char **check_rgb(char *str);
-int	check_map_name(char *name);
-int check_texture(char *str, t_input *input);
-int	check_line(char *str, t_input *input);
-int	stock_input(int fd, t_input *input);
-int check_color(char *str, t_input *input);
-void free_ip(t_input *input);
+char	**check_rgb(char *str);
+int		check_map_name(char *name);
+int 	check_texture(char *str, t_input *input);
+int		check_line(char *str, t_input *input);
+int		stock_input(int fd, t_input *input);
+int 	check_color(char *str, t_input *input);
+void	free_input(t_input *input);
+void	stock_lst(int fd, char *str, t_list *lst);
+int		check_if_map(int fd, char *str, t_list *lst);
+int		check_if_empty(t_input *input);
+void	stock_map(t_list *lst, t_input *input);
+
 #endif
