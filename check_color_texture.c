@@ -24,19 +24,6 @@ char **check_rgb(char *str)
 	return(free(str), str1);
 }
 
-
-int	check_map_name(char *name)
-{
-	size_t	i;
-
-	i = 0;
-	while (name && i < (ft_strlen(name) - 4))
-		name++;
-	if (ft_strncmp(name, ".cub", 4))
-		return (1);
-	return (0);
-}
-
 int check_color(char *str, t_input *input)
 {
 	char	c;
@@ -83,45 +70,7 @@ int check_texture(char *str, t_input *input)
 	return (0);
 }
 
-int	check_if_empty(t_input *input)
-{
-	if (!input->no)
-		return (1);
-	if (!input->so)
-		return (1);
-	if (!input->ea)
-		return (1);
-	if (!input->we)
-		return (1);
-	if (!input->f)
-		return (1);
-	if (!input->c)
-		return (1);
-	return (0);
-}
-
-int	check_if_map(int fd, char *str, t_list *lst)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while(str[i]  == ' ')
-	 	i++;
-	if (str[i] == '1' && ft_strspn(str, " 10NWSE") == ft_strlen(str))
-	{
-		stock_lst(fd, str, lst);
-		return(0);
-	}
-	else
-	{
-		//write(2, "ok\n", 3);
-		return(1);
-	}
-}
-
-int	check_line(char *str, t_input *input)
+int	check_line(char *str, t_input *input, int fd)
 {
 	if (*str == '\0')
 		return (0);
@@ -130,6 +79,8 @@ int	check_line(char *str, t_input *input)
 		return (check_texture(str, input));
     else if (!ft_strncmp(str, "F", 1) || !ft_strncmp(str, "C", 1))
         return (check_color(str, input));
+	else if (ft_strspn(str, " 10NWSE") == ft_strlen(str) && !check_if_empty(input))
+		return(check_map(str, input, fd));
 	else
 		return (1);
 }
