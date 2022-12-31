@@ -2,10 +2,12 @@
 
 void	stock_map(t_list *lst, t_input *input)
 {
-	int len;
-	int i;
+	t_list	*tmp;
+	int 	len;
+	int 	i;
 
 	i = 0;
+	tmp = lst;
 	input->map = ft_calloc(ft_lstsize(lst) + 1, sizeof(char *));
 	if (!input->map)
 		return ;
@@ -16,6 +18,7 @@ void	stock_map(t_list *lst, t_input *input)
 		i++;
 		lst = lst->next;
 	}
+	ft_lstclear(&tmp, free);
 }
 
 int	*stock_rgb(char *str)
@@ -54,9 +57,10 @@ int	stock_input(int fd, t_input *input)
 			break;
 		if (check_line(str, input, fd))
 			return (free(str), ft_putendl_fd("Error invalid map", 2), 1);
-		free(str);
+		if(!(ft_strspn(str, " 10NWSE") == ft_strlen(str)))
+			free(str);
 	}
-	if (check_if_empty(input) || !input->map)
-		return (free(str), ft_putendl_fd("Error invalid map", 2), 1);
-	return (free(str), 0);
+	if (!input->map)
+		return (ft_putendl_fd("Error invalid map", 2), 1);
+	return (0);
 }

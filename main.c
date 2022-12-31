@@ -1,8 +1,14 @@
 
 #include "cube3D.h"
 
+// void	leaks()
+// {
+// 	system ("leaks cub3D");
+// }
+
 int main(int ac, char **av)
 {
+	//atexit(leaks);
 	t_input	input;
 	int		fd;
 
@@ -16,6 +22,7 @@ int main(int ac, char **av)
 	init_input(&input);
 	if (stock_input(fd, &input))
 		return(free_input(&input), 1);
-	printf("%s\n", input.map[0]);
-	return (0);
+	printf("%s\n", input.map[6]);
+	
+	return (free_input(&input), 0);
 }

@@ -73,13 +73,13 @@ int check_texture(char *str, t_input *input)
 int	check_line(char *str, t_input *input, int fd)
 {
 	if (*str == '\0')
-		return (0);
+		return (free(str), 0);
 	else if (!ft_strncmp(str, "NO", 2) || !ft_strncmp(str, "SO", 2) 
 				|| !ft_strncmp(str, "WE", 2) || !ft_strncmp(str, "EA", 2))
 		return (check_texture(str, input));
     else if (!ft_strncmp(str, "F", 1) || !ft_strncmp(str, "C", 1))
         return (check_color(str, input));
-	else if (ft_strspn(str, " 10NWSE") == ft_strlen(str) && !check_if_empty(input))
+	else if (ft_strspn(str, " 1") == ft_strlen(str) && !check_if_empty(input))
 		return(check_map(str, input, fd));
 	else
 		return (1);
