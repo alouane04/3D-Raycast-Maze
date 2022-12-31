@@ -15,3 +15,14 @@ void free_input(t_input *input)
     if(input->c)
         free(input->c);
 }
+
+void	init_input(t_input	*input)
+{
+	input->no = NULL;
+	input->so = NULL;
+	input->ea = NULL;
+	input->we = NULL;
+	input->f = NULL;
+	input->c = NULL;
+	input->map = NULL;
+}

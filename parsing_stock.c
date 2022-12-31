@@ -1,16 +1,5 @@
 #include "cube3D.h"
 
-void	init_input(t_input	*input)
-{
-	input->no = NULL;
-	input->so = NULL;
-	input->ea = NULL;
-	input->we = NULL;
-	input->f = NULL;
-	input->c = NULL;
-	input->map = NULL;
-}
-
 int	*stock_rgb(char *str)
 {
 	int 	*i_rgb;
@@ -34,29 +23,39 @@ int	*stock_rgb(char *str)
 	return (ft_free(c_rgb), i_rgb);
 }
 
-void	stock_lst(int fd, char *str, t_list *lst)
+void	stock_lst(char **av, char *str, t_list *lst)
 {
 	char	*str1;
+	t_list	*tmp;
 
-	str1 = get_next_line(fd);
+	str1 = *av;
+	av++;
+	//printf("%s\n", str1);
 
-	// write(2, str, 5);
-	// write(2, "\n", 1);
-	ft_lstadd_back(&lst, ft_lstnew(str));
-	// if (lst->content)
-	// 	write(2, lst->content, 5);
-	check_if_map(fd, str1, lst);
+	write(2, str, 5);
+	write(2, "\n", 1);
+	tmp = ft_lstnew(str);
+	ft_lstadd_back(&lst, tmp);
+	//printf("||%s\n||", (char*)lst->content);
+	if (lst->content)
+	{
+		write(2, "test\n", 5);
+		write(2, lst->content, 5);
+	}
+	check_if_map(av, str1, lst);
 }
 
 int	get_biggest_line(t_list *lst)
 {
 	int	i;
-	//char	*str;
+	char	*str;
 
-	//str = lst->content;
-	//if (!str)
-	//	write(2, "test\n", 5);
-	write(2, "9alwa\n", 7);
+	// printf("---> %s\n", (char*)lst->content);
+	//write(2, "9alwa\n", 7);
+	str = lst->content;
+	//printf("Je;pwpasdl\n");
+	if (!str)
+		write(2, "still empty\n", 13);
 	i = ft_strlen((char*)lst->content);
 	while (lst)
 	{
@@ -102,36 +101,39 @@ void	stock_map(t_list *lst, t_input *input)
 	}
 }
 
-int	stock_input(int fd, t_input *input)
+int	stock_input(char **av, t_input *input)
 {
 	char	*str;
-	t_list	*lst;
+	t_list	lst;
 
-	lst = NULL;
+	//lst = malloc(sizeof(t_list));
+	lst.content = NULL;
+	lst.next = NULL;
 	while(1)
 	{
-		str = get_next_line(fd);
+		str = *av;
+		av++;
 		if (!str)
 			break;
 		//printf("%s\n", str);
 		if (check_line(str, input))
 		{
-			if (!check_if_map(fd, str, lst))
+			if (!check_if_map(av, str, &lst))
 			{
 				//write(2, "koo\n", 4);
 				//if(!lst->content)
 					//write(2, "ok\n", 3);
-				stock_map(lst, input);
+				stock_map(&lst, input);
 				break ;
 			}
 			else
 			{
-				return (free(str), ft_putendl_fd("Error invalid map", 2), 1);
+				return (ft_putendl_fd("Error invalid map", 2), 1);
 			}
 		}
-		free(str);
+		//free(str);
 	}
 	if (check_if_empty(input) || str)
-		return (free(str), ft_putendl_fd("Error invalid map", 2), 1);
-	return (free(str), 0);
+		return (ft_putendl_fd("Error invalid map", 2), 1);
+	return ( 0);
 }

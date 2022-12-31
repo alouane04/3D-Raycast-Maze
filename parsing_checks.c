@@ -100,7 +100,7 @@ int	check_if_empty(t_input *input)
 	return (0);
 }
 
-int	check_if_map(int fd, char *str, t_list *lst)
+int	check_if_map(char **av, char *str, t_list *lst)
 {
 	int	i;
 
@@ -111,7 +111,7 @@ int	check_if_map(int fd, char *str, t_list *lst)
 	 	i++;
 	if (str[i] == '1' && ft_strspn(str, " 10NWSE") == ft_strlen(str))
 	{
-		stock_lst(fd, str, lst);
+		stock_lst(av, str, lst);
 		return(0);
 	}
 	else

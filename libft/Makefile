@@ -6,7 +6,7 @@
 #    By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/14 15:25:14 by ariahi            #+#    #+#              #
-#    Updated: 2022/12/30 20:19:53 by ariahi           ###   ########.fr        #
+#    Updated: 2022/12/30 20:48:32 by ariahi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ Src = ft_strlen.c ft_strlcpy.c ft_strlcat.c ft_strchr.c ft_strrchr.c ft_strnstr.
 ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_atoll.c ft_lstrm.c ft_strspn.c lst_put_orderly_sorted_2.c
 
 Cc = gcc
-Flags = -Wall -Wextra -Werror -g -fsanitize=address
+Flags = -Wall -Wextra -Werror -g
 Name = libft.a
 
 Obj = $(Src:.c=.o)
