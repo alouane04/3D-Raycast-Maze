@@ -1,10 +1,10 @@
-SRC = main.c gnl/get_next_line.c gnl/get_next_line_utils.c parsing_checks.c parsing_stock.c parsing_utils.c
+SRC = main.c gnl/get_next_line.c gnl/get_next_line_utils.c  parsing_stock.c parsing_utils.c check_map.c check_color_texture.c
 
 NAME = cub3D
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror
 
 OBJ = $(SRC:.c=.o)
 
