@@ -1,4 +1,4 @@
-SRC = main.c gnl/get_next_line.c gnl/get_next_line_utils.c  parsing_stock.c parsing_utils.c check_map.c check_color_texture.c
+SRC = main.c  parsing_stock.c parsing_utils.c check_map.c check_color_texture.c
 
 NAME = cub3D
 
@@ -8,7 +8,7 @@ FLAGS = -Wall -Wextra -Werror
 
 OBJ = $(SRC:.c=.o)
 
-$(NAME): cube3D.h gnl/get_next_line.h $(OBJ) libft/libft.a
+$(NAME): cube3D.h  $(OBJ) libft/libft.a
 	$(CC) $(FLAGS) -o $(NAME) $(SRC) libft/libft.a
 
 %.o : %.c
