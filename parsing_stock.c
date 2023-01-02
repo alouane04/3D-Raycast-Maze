@@ -86,7 +86,7 @@ int	stock_input(int fd, t_input *input)
 			break;
 		if (check_line(str, input, fd))
 			return (free(str), ft_putendl_fd("Error invalid map", 2), 1);
-		if( !str && !(ft_strspn(str, " 10NWSE") == ft_strlen(str)))
+		if(!(ft_strspn(str, " 10NWSE") == ft_strlen(str)))
 			free(str);
 	}
 	if (!input->map || ((ft_2d_len(input->map) < 3)))

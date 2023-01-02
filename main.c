@@ -1,14 +1,14 @@
 
 #include "cube3D.h"
 
-// void	leaks()
-// {
-// 	system ("leaks cub3D");
-// }
+void	leaks()
+{
+	system ("leaks cub3D");
+}
 
 int main(int ac, char **av)
 {
-	//atexit(leaks);
+	atexit(leaks);
 	t_input	input;
 	int		fd;
 
