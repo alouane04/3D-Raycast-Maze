@@ -27,7 +27,9 @@ char **check_rgb(char *str)
 int check_color(char *str, t_input *input)
 {
 	char	c;
+	char	*s;
 
+	s = str;
 	c = *str;
 	str++;
 	while (*str == ' ')
@@ -46,13 +48,15 @@ int check_color(char *str, t_input *input)
 	}
 	else
 		return(1);
-	return(0);
+	return(free(s), 0);
 }
 
 int check_texture(char *str, t_input *input)
 {
 	char	c;
+	char	*s;
 
+	s = str;
 	c = *str;
 	str += 2;
 	while (*str == ' ')
@@ -67,7 +71,7 @@ int check_texture(char *str, t_input *input)
 		input->ea = ft_strdup(str);
 	else
 		return(1);
-	return (0);
+	return (free(s), 0);
 }
 
 int	check_line(char *str, t_input *input, int fd)
