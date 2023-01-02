@@ -14,6 +14,8 @@ void free_input(t_input *input)
         free(input->f);
     if(input->c)
         free(input->c);
+	if (input->map)
+		ft_free(input->map);
 }
 
 int	get_biggest_line(t_list *lst)
