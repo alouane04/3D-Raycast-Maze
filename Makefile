@@ -4,12 +4,12 @@ NAME = cub3D
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -Imlx -fsanitize=address
 
 OBJ = $(SRC:.c=.o)
 
-$(NAME): cube3D.h  $(OBJ) libft/libft.a
-	$(CC) $(FLAGS) -o $(NAME) $(SRC) libft/libft.a
+$(NAME): cub3D.h  $(OBJ) libft/libft.a
+	$(CC) $(FLAGS) -o $(NAME) $(SRC) libft/libft.a -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
 
 %.o : %.c
 	${CC} ${FLAGS} -c $<

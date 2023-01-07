@@ -1,4 +1,4 @@
-#include "cube3D.h"
+#include "cub3D.h"
 
 void	stock_map(t_list *lst, t_input *input)
 {
@@ -73,6 +73,34 @@ int	map_validity(char	**map, int i)
 	return(0);
 }
 
+int	check_player(char **map)
+{
+	int	i;
+	int	j;
+	int	n_palyers;
+
+	i = 0;
+	j = 0;
+	n_palyers = 0;
+	if (!map)
+		return (1);
+	while (map[i])
+	{
+		while (map[i][j])
+		{
+			if(map[i][j] == 'N' || map[i][j] == 'S' 
+				|| map[i][j] == 'E' || map[i][j] == 'W')
+				n_palyers++;
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	if (n_palyers != 1)
+		return (1);
+	return (0);
+}
+
 int	stock_input(int fd, t_input *input)
 {
 	char	*str;
@@ -89,7 +117,7 @@ int	stock_input(int fd, t_input *input)
 	}
 	if (!input->map || ((ft_2d_len(input->map) < 3)))
 		return (ft_putendl_fd("Error invalid map", 2), 1);
-	if(map_validity(input->map, 1))
+	if(map_validity(input->map, 1) || check_player(input->map))
 		return (ft_putendl_fd("Error invalid map2", 2), 1);
 	return (0);
 }

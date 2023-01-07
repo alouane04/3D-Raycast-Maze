@@ -1,4 +1,4 @@
-#include "cube3D.h"
+#include "cub3D.h"
 
 int	check_map_name(char *name)
 {
