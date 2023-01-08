@@ -1,4 +1,4 @@
-SRC = main.c  parsing_stock.c parsing_utils.c check_map.c check_color_texture.c
+SRC = main.c  parsing_stock.c parsing_utils.c check_map.c check_color_texture.c bonus/draw_mini_map.c mlx_utils.c data_init.c
 
 NAME = cub3D
 
@@ -25,6 +25,6 @@ clean:
 
 fclean:
 	make -C libft fclean
-	rm -rf $(NAME) $(OBJ)
+	rm -rf $(NAME) $(OBJ) draw_mini_map.o
 
 re: fclean all

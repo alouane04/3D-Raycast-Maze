@@ -1,0 +1,4 @@
+solve player movements
+check it's coherent with map
+solve wall colision
+start ray casting

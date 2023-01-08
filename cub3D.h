@@ -31,10 +31,12 @@
 # define ESC_KEY 53
 # define WIN_CLOSE 17
 
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
+#define WINDOW_WIDTH 1920
+#define WINDOW_HEIGHT 1080
+#define MINI_MAP_WIDTH 200
+#define MINI_MAP_HEIGHT 200
 #define NUM_RAYS WINDOW_HEIGHT
-#define TILE_SIZE 64
+#define TILE_SIZE 32
 
 typedef struct s_input
 {
@@ -49,15 +51,15 @@ typedef struct s_input
 
 typedef struct s_player
 {
-	int		x;
-	int		y;
+	double	x;
+	double	y;
 	int		width;
 	int		height;
 	int		turnDirection; // -1 for left, +1 for right
 	int		walkDirection;// -1 for back, +1 for right
-	float	rotationAgnles;
-	float	walkSpeed;
-	float	turnSpeed;
+	double	rotationAgnles;
+	double	walkSpeed;
+	double	turnSpeed;
 }			t_player;
 
 typedef struct s_image
@@ -75,7 +77,7 @@ typedef struct s_data
 	void		*win;
 	int			num_rows;
 	int			num_cols;
-	int			fov;
+	double			fov;
 	t_input		*input;
 	t_player	*player;
 	t_image		*image;
@@ -97,5 +99,18 @@ int		check_if_empty(t_input *input);
 void	stock_map(t_list *lst, t_input *input);
 int		get_biggest_line(t_list *lst);
 void	set_row_col(t_data *data);
+
+void	render_player(t_data *data, int x,int y,int color);
+void	draw_mini_map(t_data *data, int x, int y, int color);
+int		render_map(t_data *data);
+int		set_player(t_data *data, char c, int x, int y);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int		setup(t_data *data);
+int		start_game(t_data *data);
+int		data_init(t_data *data, t_input *input);
+void	free_data(t_data *data);
+int		handle_keyPress(int keynum, t_data *data);
+int		handle_keyrelease(int keynum, t_data *data);
+
 
 #endif
