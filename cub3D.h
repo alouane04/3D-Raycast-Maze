@@ -131,7 +131,7 @@ int		start_game(t_data *data);
 int		data_init(t_data *data, t_input *input);
 void	free_data(t_data *data);
 int		handle_keyPress(int keynum, t_data *data);
-void 	move_player(t_data *data,double rot_angle);
+void 	move_player(t_data *data,double rot_angle, int dir);
 void 	render_back_ground(t_data *data);
 void 	ray_init(t_ray *ray, float angle);
 float 	solve_angle(float angle);
