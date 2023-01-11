@@ -1,11 +1,13 @@
-#include "cube3D.h"
+#include "cub3D.h"
 
 void	stock_map(t_list *lst, t_input *input)
 {
-	int len;
-	int i;
+	t_list	*tmp;
+	int 	len;
+	int 	i;
 
 	i = 0;
+	tmp = lst;
 	input->map = ft_calloc(ft_lstsize(lst) + 1, sizeof(char *));
 	if (!input->map)
 		return ;
@@ -16,6 +18,7 @@ void	stock_map(t_list *lst, t_input *input)
 		i++;
 		lst = lst->next;
 	}
+	ft_lstclear(&tmp, free);
 }
 
 int	*stock_rgb(char *str)
@@ -41,6 +44,63 @@ int	*stock_rgb(char *str)
 	return (ft_free(c_rgb), i_rgb);
 }
 
+int	map_validity(char	**map, int i)
+{
+	int		j;
+
+	j = 0;
+	if (map[i + 1] == '\0')
+	{
+		if((ft_strspn(map[i], " 1") == ft_strlen(map[i])))
+			return (0);
+		return(1);
+	}
+	if (!ft_strchr(map[i], '1') || map[i][j] == '\0'
+			|| (map[i][j] != ' ' && map[i][j] != '1'))
+		return(1);
+	while (map[i][j])
+	{
+		if(map[i][j] && !(map[i][j] == ' ' || map[i][j] == '1')
+			&& (map[i][j - 1] == ' ' || map[i][j + 1] == ' ' 
+				|| map[i-1][j] == ' ' || map[i + 1][j] == ' '
+					|| map[i][j + 1] == '\0' || map[i + 1][j] == '\0'
+						|| map[i - 1][j] == '\0'))
+			return(1);
+		j++;
+	}
+	if(map_validity(&map[i], i))
+		return(1);
+	return(0);
+}
+
+int	check_player(char **map)
+{
+	int	i;
+	int	j;
+	int	n_palyers;
+
+	i = 0;
+	j = 0;
+	n_palyers = 0;
+	if (!map)
+		return (1);
+	while (map[i])
+	{
+		while (map[i][j])
+		{
+			if(map[i][j] == 'N' || map[i][j] == 'S' 
+				|| map[i][j] == 'E' || map[i][j] == 'W')
+				n_palyers++;
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	if (n_palyers != 1)
+		return (1);
+	return (0);
+}
+
 int	stock_input(int fd, t_input *input)
 {
 	char	*str;
@@ -54,9 +114,10 @@ int	stock_input(int fd, t_input *input)
 			break;
 		if (check_line(str, input, fd))
 			return (free(str), ft_putendl_fd("Error invalid map", 2), 1);
-		free(str);
 	}
-	if (check_if_empty(input) || !input->map)
-		return (free(str), ft_putendl_fd("Error invalid map", 2), 1);
-	return (free(str), 0);
+	if (!input->map || ((ft_2d_len(input->map) < 3)))
+		return (ft_putendl_fd("Error invalid map", 2), 1);
+	if(map_validity(input->map, 1) || check_player(input->map))
+		return (ft_putendl_fd("Error invalid map", 2), 1);
+	return (0);
 }

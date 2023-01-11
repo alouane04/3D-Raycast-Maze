@@ -1,0 +1,3 @@
+solve the ray casting 
+visualize it 
+start rendering

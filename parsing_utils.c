@@ -1,4 +1,4 @@
-#include "cube3D.h"
+#include "cub3D.h"
 
 void free_input(t_input *input)
 {
@@ -14,20 +14,39 @@ void free_input(t_input *input)
         free(input->f);
     if(input->c)
         free(input->c);
+	if (input->map)
+		ft_free(input->map);
 }
 
 int	get_biggest_line(t_list *lst)
 {
-	int	i;
+	int	n;
 
-	i = ft_strlen((char*)lst->content);
+	n = ft_strlen((char*)lst->content);
 	while (lst)
 	{
-		if (i < (int)ft_strlen((char*)lst->content))
-			i = ft_strlen(lst->content);
+		if (n < (int)ft_strlen((char*)lst->content))
+			n = ft_strlen(lst->content);
 		lst = lst->next;
 	}
-	return (i);
+	return (n);
+}
+
+void	set_row_col(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = ft_strlen(data->input->map[i]);
+	while (data->input->map[i])
+	{
+		if (j < (int)ft_strlen(data->input->map[i]))
+			j = ft_strlen(data->input->map[i]);
+		i++;
+	}
+	data->num_rows = i;
+	data->num_cols = j;
 }
 
 char	*stock_line(char const *s, int len)

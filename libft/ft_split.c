@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 06:27:52 by ariahi            #+#    #+#             */
-/*   Updated: 2022/12/30 16:48:15 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/12/31 16:48:53 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,6 @@ static int	count_s(char const *s, char c)
 			count++;
 	}
 	return (count);
-}
-
-void	ft_free(char **s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		free(s[i++]);
-	free(s);
 }
 
 static char	*put_str(char const *s, int len)
