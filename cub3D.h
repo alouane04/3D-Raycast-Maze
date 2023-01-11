@@ -35,7 +35,7 @@
 #define WINDOW_HEIGHT 1080
 #define MINI_MAP_WIDTH 200
 #define MINI_MAP_HEIGHT 200
-#define NUM_RAYS WINDOW_HEIGHT
+#define NUM_RAYS WINDOW_WIDTH
 #define TILE_SIZE 32
 
 typedef struct s_input
@@ -53,10 +53,6 @@ typedef struct s_player
 {
 	double	x;
 	double	y;
-	int		width;
-	int		height;
-	int		turnDirection; // -1 for left, +1 for right
-	int		walkDirection;// -1 for back, +1 for right
 	double	rotationAgnles;
 	double	walkSpeed;
 	double	turnSpeed;
@@ -71,13 +67,28 @@ typedef struct s_image
 	int		endian;
 }			t_image;
 
+typedef struct s_ray
+{
+	float ray_angle;
+	float wall_hithx;
+	float wall_hithy;
+	float wall_hitvx;
+	float wall_hitvy;
+	float distance;
+	int was_hit_vertical;
+	int is_ray_facing_up;
+	int is_ray_facing_right;
+	char wall_hit_content;
+}			t_ray;
+
 typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
 	int			num_rows;
 	int			num_cols;
-	double			fov;
+	double		fov;
+	t_ray		*ray;
 	t_input		*input;
 	t_player	*player;
 	t_image		*image;
@@ -110,7 +121,16 @@ int		start_game(t_data *data);
 int		data_init(t_data *data, t_input *input);
 void	free_data(t_data *data);
 int		handle_keyPress(int keynum, t_data *data);
-int		handle_keyrelease(int keynum, t_data *data);
-
+void 	move_player(t_data *data,double rot_angle);
+void 	render_back_ground(t_data *data);
+void 	ray_init(t_ray *ray, float angle);
+float 	solve_angle(float angle);
+int 	has_wall_at(t_data *data, int x, int y, char c);
+void	wallhitxy(t_data * data,float *hitx,float *hity, char c);
+void	stepxy(t_data *data, float *stepx, float *stepy, char c);
+void	horizontal_intersection(t_data *data);
+void	vertical_intersection(t_data *data);
+void	distance(t_data *data);
+void	generate_3d_projection(t_data *data ,int i);
 
 #endif

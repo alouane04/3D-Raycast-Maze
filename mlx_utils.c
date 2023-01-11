@@ -8,6 +8,25 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
+void move_player(t_data *data,double rot_angle)
+{
+	int nextx;
+    int nexty;
+	int next2x;
+    int next2y;
+
+	nextx = ((data->player->x - 3 ) + cos(rot_angle) * (data->player->walkSpeed)) / TILE_SIZE;
+	nexty = ((data->player->y - 3) + sin(rot_angle) * (data->player->walkSpeed)) / TILE_SIZE;
+	next2x = ((data->player->x + 3 ) + cos(rot_angle) * (data->player->walkSpeed)) / TILE_SIZE;
+	next2y = ((data->player->y + 3) + sin(rot_angle) * (data->player->walkSpeed)) / TILE_SIZE;
+    if(data->input->map[nexty][nextx] != '1' && data->input->map[next2y][next2x] != '1' 
+			&& data->input->map[nexty][next2x] != '1' && data->input->map[next2y][nextx] != '1')
+    {
+        data->player->x = data->player->x + cos(rot_angle) * data->player->walkSpeed;
+        data->player->y = data->player->y + sin(rot_angle) * data->player->walkSpeed;
+    }
+}
+
 int handle_keyPress(int keynum, t_data *data)
 {
 	if (keynum == ESC_KEY)
@@ -16,30 +35,22 @@ int handle_keyPress(int keynum, t_data *data)
 		mlx_destroy_window(data->mlx, data->win);
 		exit(0);
 	}
-	else if(keynum == UP_M)
-		data->player->walkDirection = 1;
-	else if(keynum == DOWN_M)
-		data->player->walkDirection = -1;
-	else if(keynum == LEFT_R)
-		data->player->turnDirection = -1;
-	else if(keynum == RIGHT_R)
-		data->player->turnDirection = 1;
+    if (keynum == UP_M)
+		move_player(data, fmod((data->player->rotationAgnles) ,(2 * M_PI)));
+	if (keynum == DOWN_M)
+		move_player(data, fmod((data->player->rotationAgnles + M_PI) ,(2 * M_PI)));
+	if (keynum == LEFT_M)
+		move_player(data, fmod((data->player->rotationAgnles + M_PI_2) ,(2 * M_PI)));
+	if (keynum == RIGHT_M)
+		move_player(data, fmod((data->player->rotationAgnles - M_PI_2) ,(2 * M_PI)));
+    if (keynum == RIGHT_R)
+        data->player->rotationAgnles = fmod((data->player->rotationAgnles + (2 * M_PI)
+                                        - data->player->turnSpeed) ,(2 * M_PI)) ;
+    if (keynum == LEFT_R)
+        data->player->rotationAgnles = fmod((data->player->rotationAgnles
+                                        + data->player->turnSpeed) ,(2 * M_PI)) ;
 	return(0);
 }
-
-int handle_keyrelease(int keynum, t_data *data)
-{
-	if(keynum == UP_M)
-		data->player->walkDirection = 0;
-	else if(keynum == DOWN_M)
-		data->player->walkDirection = 0;
-	else if(keynum == LEFT_R)
-		data->player->turnDirection = 0;
-	else if(keynum == RIGHT_R)
-		data->player->turnDirection = 0;
-	return (0);
-}
-
 
 void	free_data(t_data *data)
 {

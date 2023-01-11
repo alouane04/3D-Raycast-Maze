@@ -7,19 +7,15 @@ int	set_player(t_data *data, char c, int x, int y)
 		return (1);
 	data->player->x = x * TILE_SIZE + TILE_SIZE / 2;
 	data->player->y = y * TILE_SIZE + TILE_SIZE / 2;
-	data->player->height = 10;
-	data->player->width = 10;
-	data->player->turnDirection = 0;
-	data->player->walkDirection = 0;
 	data->player->walkSpeed = TILE_SIZE / 4;
-	data->player->turnSpeed = 45 * (M_PI / 180);
+	data->player->turnSpeed = 15 * (M_PI / 180);
 	if (c == 'N')
 		data->player->rotationAgnles = M_PI / 2;
-	else if (c == 'W')
+	if (c == 'W')
 		data->player->rotationAgnles = M_PI;
-	else if (c == 'S')
+	if (c == 'S')
 		data->player->rotationAgnles = 3 * (M_PI / 2);
-	else if (c == 'E')
+	if (c == 'E')
 		data->player->rotationAgnles = 0;
 	return (0);
 }
@@ -50,10 +46,45 @@ int	setup(t_data *data)
 	return (0);
 }
 
+float solve_angle(float angle)
+{
+	angle  = remainder(angle , 2 * M_PI);
+	if(angle < 0)
+		angle = angle + (2 * M_PI);
+	return (angle);
+}
+
+void ray_init(t_ray *ray, float angle)
+{
+	/*if(angle > M_PI_2 && angle < M_PI)
+		ray->ray_angle = M_PI - angle;
+	else if(angle > (3 * M_PI_2))
+		ray->ray_angle = (2 * M_PI) - angle;
+	else*/
+		ray->ray_angle = angle;
+	if(angle > 0 && angle < M_PI)
+		ray->is_ray_facing_up = 1;
+	else
+		ray->is_ray_facing_up = 0;
+	if(angle < M_PI_2 || angle > (3 * M_PI_2))
+		ray->is_ray_facing_right = 1;
+	else
+		ray->is_ray_facing_right = 0;
+	ray->wall_hithx = 0;
+	ray->wall_hithy = 0;
+	ray->wall_hitvx = 0;
+	ray->wall_hitvy = 0;
+	ray->distance = 0;
+	ray->was_hit_vertical = 0;
+}
+
 int	data_init(t_data *data, t_input *input)
 {
 	data->input = input;
 	set_row_col(data);
+	data->ray = ft_calloc(1, sizeof(t_ray));
+	if(!data->ray)
+		return(1);
 	data->fov = 60 * (M_PI / 180);
 	if (setup(data))
 		return (1);
