@@ -81,6 +81,15 @@ typedef struct s_ray
 	char wall_hit_content;
 }			t_ray;
 
+typedef struct s_texturs
+{
+	void	*img;
+	char	*addr;
+	int		width;
+	int		height;
+}			t_texturs;
+
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -88,6 +97,7 @@ typedef struct s_data
 	int			num_rows;
 	int			num_cols;
 	double		fov;
+	t_texturs	*texture[4];
 	t_ray		*ray;
 	t_input		*input;
 	t_player	*player;
@@ -132,5 +142,7 @@ void	horizontal_intersection(t_data *data);
 void	vertical_intersection(t_data *data);
 void	distance(t_data *data);
 void	generate_3d_projection(t_data *data ,int i);
+int		texture_img(t_data *data);
+
 
 #endif

@@ -118,6 +118,6 @@ int	stock_input(int fd, t_input *input)
 	if (!input->map || ((ft_2d_len(input->map) < 3)))
 		return (ft_putendl_fd("Error invalid map", 2), 1);
 	if(map_validity(input->map, 1) || check_player(input->map))
-		return (ft_putendl_fd("Error invalid map2", 2), 1);
+		return (ft_putendl_fd("Error invalid map", 2), 1);
 	return (0);
 }

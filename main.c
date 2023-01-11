@@ -49,14 +49,15 @@ int main(int ac, char **av)
 
 	if (ac != 2)
 		return (ft_putendl_fd("Error invalid argument", 2), 1);
-	fd = open(av[1], O_RDONLY);
+	fd = open(av[1], O_RDWR);
 	if (fd == -1)
 		return (ft_putendl_fd("Error can't open map", 2), 1);
 	if (check_map_name(av[1]))
 		return (ft_putendl_fd("Error invalid map name", 2), 1);
 	init_input(&input);
 	if (stock_input(fd, &input))
-		return(free_input(&input), 1);
+		return(close(fd), free_input(&input), 1);
+	close(fd);
 	if (data_init(&data, &input))
 		return (free_data(&data), 1);
 	mlx_loop_hook(data.mlx, start_game, &data);

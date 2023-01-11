@@ -55,12 +55,16 @@ int check_texture(char *str, t_input *input)
 {
 	char	c;
 	char	*s;
+	int		fd;
 
 	s = str;
 	c = *str;
 	str += 2;
 	while (*str == ' ')
 		str++;
+	fd = open(str, O_RDWR);
+	if (fd == -1)
+		return (close(fd), 1);
 	if (c == 'N' && !input->no)
 		input->no = ft_strdup(str);
 	else if (c == 'S' && !input->so)
@@ -71,7 +75,7 @@ int check_texture(char *str, t_input *input)
 		input->ea = ft_strdup(str);
 	else
 		return(1);
-	return (free(s), 0);
+	return (free(s), close(fd),0);
 }
 
 int	check_line(char *str, t_input *input, int fd)

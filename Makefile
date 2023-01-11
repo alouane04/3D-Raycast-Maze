@@ -25,6 +25,6 @@ clean:
 
 fclean:
 	make -C libft fclean
-	rm -rf $(NAME) $(OBJ) draw_mini_map.o
+	rm -rf $(NAME) $(OBJ) draw_mini_map.o cub3D.dSYM
 
 re: fclean all

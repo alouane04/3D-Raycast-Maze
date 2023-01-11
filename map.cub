@@ -4,10 +4,10 @@ F 2,1,100
 
 
 
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./texturs/1.xpm
+SO ./texturs/2.xpm
+WE ./texturs/3.xpm
+EA ./texturs/4.xpm
 
 
 
