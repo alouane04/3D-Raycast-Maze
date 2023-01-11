@@ -1,4 +1,4 @@
-int	check_if_map(int fd, char *str, t_list *lst)
+/*int	check_if_map(int fd, char *str, t_list *lst)
 {
 	int	i;
 
@@ -44,4 +44,4 @@ void	stock_map(t_list *lst, t_input *input)
 		i++;
 		lst = lst->next;
 	}
-}
+}*/

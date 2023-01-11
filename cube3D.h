@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3D.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 08:43:30 by ariahi            #+#    #+#             */
-/*   Updated: 2022/12/31 09:36:00 by eel-moun         ###   ########.fr       */
+/*   Updated: 2023/01/02 10:45:16 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <fcntl.h>
-#include "gnl/get_next_line.h"
 #include "libft/libft.h"
 #include <errno.h>
 
