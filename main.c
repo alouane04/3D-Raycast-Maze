@@ -1,10 +1,10 @@
 
 #include "cub3D.h"
 
-void	leaks()
-{
-	system ("leaks cub3D");
-}
+// void	leaks()
+// {
+// 	system ("leaks cub3D");
+// }
 
 
 void cast_ray(t_data *data)
@@ -42,7 +42,7 @@ int	start_game(t_data *data)
 
 int main(int ac, char **av)
 {
-	atexit(leaks);
+	// atexit(leaks);
 	t_input	input;
 	t_data	data;
 	int		fd;
