@@ -33,6 +33,7 @@ int	start_game(t_data *data)
 {
 	render_back_ground(data);
 	cast_all_rays(data);
+	move_player(data);
 	render_map(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->image->img, 0, 0);
 	return 0;
@@ -60,8 +61,9 @@ int main(int ac, char **av)
 	close(fd);
 	if (data_init(&data, &input))
 		return (free_data(&data), 1);
-	mlx_loop_hook(data.mlx, start_game, &data);
 	mlx_hook(data.win, 02, 1L<<0, &handle_keyPress, &data);
+	mlx_hook(data.win, 03, 2L<<0, &handle_keyrelease, &data);
+	mlx_loop_hook(data.mlx, start_game, &data);
 	mlx_loop(data.mlx);
 	return (free_data(&data), 0);
 }
