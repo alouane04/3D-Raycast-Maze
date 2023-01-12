@@ -54,6 +54,9 @@ int handle_keyPress(int keynum, t_data *data)
 
 void	free_data(t_data *data)
 {
+	int	i;
+
+	i = -1;
 	if (data->image->img)
 		mlx_destroy_image(data->mlx, data->image->img);
 	if (data->image)
@@ -64,5 +67,14 @@ void	free_data(t_data *data)
 		free(data->mlx);
 	if (data->player)
 		free(data->player);
+	while (++i < 4)
+	{
+		if (data->texture[i])
+			if (data->texture[i]->img)
+			{
+				mlx_destroy_image(data->mlx, data->texture[i]->img);
+				free(data->texture[i]);
+			}
+	}
 	free_input(data->input);
 }
