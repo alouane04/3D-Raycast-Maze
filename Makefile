@@ -4,7 +4,7 @@ NAME = cub3D
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror -Imlx -g
+FLAGS = -Wall -Wextra -Werror -Imlx -g -fsanitize=address
 
 OBJ = $(SRC:.c=.o)
 

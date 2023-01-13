@@ -123,5 +123,7 @@ int    data_init(t_data *data, t_input *input)
     data->image->addr = mlx_get_data_addr(data->image->img
         , &data->image->bits_per_pixel, &data->image->line_length
             , &data->image->endian);
+	if (texture_img(data))
+		return (1);
     return (0);
 }
