@@ -13,23 +13,42 @@ int check_wall(t_data *data, double x, double y)
     return(1);
 }
 
+static int check_wall2(t_data *data, double x, double y)
+{
+    int i;
+    int j;
+    int k;
+    int h;
+
+    i = floor((x + 2) / TILE_SIZE);
+    j = floor((y + 2)/ TILE_SIZE);
+    k = floor((x - 2) / TILE_SIZE);
+    h = floor((y - 2)/ TILE_SIZE);
+    if(data->input->map[j][i] == '1' || data->input->map[j][i] == ' ' 
+        || data->input->map[j][i] == '\0' || data->input->map[h][k] == '1' 
+            || data->input->map[h][k] == ' ' || data->input->map[h][k] == '\0')
+        return(0);
+    return(1);
+}
+
 void get_next_pos(t_data *data, double *x, double *y,int dir)
 {
-    if(data->key->a || data->key->d)
+    if(data->key->d || data->key->a)
     {
-        *x += cos(data->player->rotationAgnles 
-                + (dir * M_PI_2)) * data->player->walkSpeed;
-        *y += sin(data->player->rotationAgnles 
-                + (dir * M_PI_2)) * data->player->walkSpeed;
+        *x += cos(data->player->rotationAgnles + (dir * M_PI_2))
+                * data->player->walkSpeed;
+        *y -= sin(data->player->rotationAgnles + (dir * M_PI_2))
+                * data->player->walkSpeed;
     }
     if(data->key->s || data->key->w)
     {
         *x += cos(data->player->rotationAgnles) 
-                * dir * data->player->walkSpeed;;
+                * dir * data->player->walkSpeed;
         *y -= sin(data->player->rotationAgnles) 
-                * dir * data->player->walkSpeed;;
+                * dir * data->player->walkSpeed;
     }
 }
+
 int handle_keyPress(int keynum, t_data *data)
 {
     data->player->rotationAgnles = solve_angle(data->player->rotationAgnles);
@@ -91,7 +110,7 @@ int move_player(t_data *data)
         data->player->rotationAgnles += data->player->turnSpeed;
     if(data->key->left)
         data->player->rotationAgnles -= data->player->turnSpeed;
-    if(check_wall(data, nextx, nexty))
+    if(check_wall2(data, nextx, nexty))
     {
         data->player->x = nextx;
         data->player->y = nexty;

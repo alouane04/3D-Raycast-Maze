@@ -7,7 +7,7 @@ int	set_player(t_data *data, char c, int x, int y)
 		return (1);
 	data->player->x = x * TILE_SIZE + TILE_SIZE / 2;
 	data->player->y = y * TILE_SIZE + TILE_SIZE / 2;
-	data->player->walkSpeed = TILE_SIZE / 4;
+	data->player->walkSpeed = TILE_SIZE / 8;
 	data->player->turnSpeed = 15 * (M_PI / 180);
 	if (c == 'N')
 		data->player->rotationAgnles = M_PI / 2;
