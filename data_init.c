@@ -56,12 +56,7 @@ float solve_angle(float angle)
 
 void ray_init(t_ray *ray, float angle)
 {
-	/*if(angle > M_PI_2 && angle < M_PI)
-		ray->ray_angle = M_PI - angle;
-	else if(angle > (3 * M_PI_2))
-		ray->ray_angle = (2 * M_PI) - angle;
-	else*/
-		ray->ray_angle = angle;
+	ray->ray_angle = angle;
 	if(angle > 0 && angle < M_PI)
 		ray->is_ray_facing_up = 1;
 	else

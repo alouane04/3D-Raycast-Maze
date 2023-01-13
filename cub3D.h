@@ -132,6 +132,7 @@ void	stock_map(t_list *lst, t_input *input);
 int		get_biggest_line(t_list *lst);
 void	set_row_col(t_data *data);
 
+int		create_rgb(int r, int g, int b);
 void	render_player(t_data *data, int x,int y,int color);
 void	draw_mini_map(t_data *data, int x, int y, int color);
 int		render_map(t_data *data);

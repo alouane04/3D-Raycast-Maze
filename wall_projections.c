@@ -19,6 +19,7 @@ void generate_3d_projection(t_data *data ,int i)
     pix = wall_top_pixel;
     while(pix < wall_bottom_pixel)
     {
+        // here fction for textures instead of the bellow
         my_mlx_pixel_put(data, i, pix, 0x00ffffff);
         pix++;
     }

@@ -82,6 +82,11 @@ void horizontal_intersection(t_data *data)
 		hitx += stepx;
 		hity += stepy;
 	}
+        if(hitx > WINDOW_WIDTH || hity > WINDOW_HEIGHT)
+    {
+        data->ray->wall_hithx = WINDOW_WIDTH;
+        data->ray->wall_hithy = WINDOW_HEIGHT;
+    }
 }
 
 void vertical_intersection(t_data *data)
@@ -104,6 +109,11 @@ void vertical_intersection(t_data *data)
 		hitx += stepx;
 		hity += stepy;
 	}
+    if(hitx > WINDOW_WIDTH || hity > WINDOW_HEIGHT)
+    {
+        data->ray->wall_hitvx = WINDOW_WIDTH;
+        data->ray->wall_hitvy = WINDOW_HEIGHT;
+    }
 }
 
 void distance(t_data *data)

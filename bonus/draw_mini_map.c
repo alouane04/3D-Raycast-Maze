@@ -71,9 +71,14 @@ void render_back_ground(t_data *data)
 	while(i < WINDOW_WIDTH)
 	{
 		j = 0;
+		while(j <= (WINDOW_HEIGHT / 2))
+		{
+			my_mlx_pixel_put(data, i, j, create_rgb(data->input->c[0],data->input->c[1],data->input->c[2]));
+			j++;
+		}
 		while(j < WINDOW_HEIGHT)
 		{
-			my_mlx_pixel_put(data, i, j, 0);
+			my_mlx_pixel_put(data, i, j,create_rgb(data->input->f[0],data->input->f[1],data->input->f[2]));
 			j++;
 		}
 		i++;
