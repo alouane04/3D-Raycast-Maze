@@ -1,25 +1,91 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wall_projections.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/13 18:00:29 by ariahi            #+#    #+#             */
+/*   Updated: 2023/01/13 19:34:40 by ariahi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
-void generate_3d_projection(t_data *data ,int i)
+t_texturs	*get_texture(t_data *data)
 {
-    float dst_project_plane;
-    float project_wallheight;
-    int wall_top_pixel;
-    int wall_bottom_pixel;
-    int pix;
+	if (!data->ray->was_hit_vertical && data->ray->is_ray_facing_up)
+		return (data->texture[0]);
+	if (!data->ray->was_hit_vertical && !data->ray->is_ray_facing_up)
+		return (data->texture[1]);
+	if (data->ray->was_hit_vertical && data->ray->is_ray_facing_right)
+		return (data->texture[2]);
+	else
+		return (data->texture[3]);
+}
 
-    dst_project_plane = (WINDOW_WIDTH / 2) / tan(data->fov / 2);
-    project_wallheight = (TILE_SIZE / (data->ray->distance * cos(data->ray->ray_angle - data->player->rotationAgnles))) * dst_project_plane;
-    wall_top_pixel = (int)((WINDOW_HEIGHT / 2) - (project_wallheight / 2));
-    wall_bottom_pixel =(int)((WINDOW_HEIGHT / 2) + (project_wallheight / 2));
-    if (wall_top_pixel < 0)
-        wall_top_pixel = 0;
-    if(wall_bottom_pixel > WINDOW_HEIGHT)
-        wall_bottom_pixel = WINDOW_HEIGHT;
-    pix = wall_top_pixel;
-    while(pix < wall_bottom_pixel)
-    {
-        my_mlx_pixel_put(data, i, pix, 0x00ffffff);
-        pix++;
-    }
+int	has_wall_at(t_data *data, int x, int y, char c)
+{
+	if (x >= data->num_cols || y >= data->num_rows
+		|| x <= 0 || y <= 0)
+		return (1);
+	if (data->ray->is_ray_facing_right && c == 'v' )
+		if (data->input->map[y][x] == '1')
+			return (1);
+	if (data->ray->is_ray_facing_up && c == 'h')
+		if (data->input->map[y - 1][x] == '1')
+			return (1);
+	if (!data->ray->is_ray_facing_right && c == 'v' )
+		if (data->input->map[y][x - 1] == '1')
+			return (1);
+	if (!data->ray->is_ray_facing_up && c == 'h')
+		if (data->input->map[y][x] == '1')
+			return (1);
+	return (0);
+}
+
+static void	draw_text(t_data *data, int x_y[2], int wall_bottom,
+						double wall_height)
+{
+	t_texturs	*txt;
+	int			txt_x;
+	int			txt_y;
+	int			offset;
+
+	txt = get_texture(data);
+	if (data->ray->was_hit_vertical)
+		txt_x = fmod(data->ray->wall_hitvy, TILE_SIZE)
+			* (txt->width / TILE_SIZE);
+	else
+		txt_x = fmod(data->ray->wall_hithx, TILE_SIZE)
+			* (txt->width / TILE_SIZE);
+	while (x_y[1] < wall_bottom)
+	{
+		offset = x_y[1] + (wall_height - WINDOW_HEIGHT) / 2;
+		txt_y = offset * (txt->height / wall_height);
+		my_mlx_pixel_put(data, x_y[0], x_y[1],
+			((int *)txt->addr)[((txt->width * txt_y) + txt_x)]);
+		x_y[1]++;
+	}
+}
+
+void	generate_3d_projection(t_data *data, int i)
+{
+	double	project_wallheight;
+	int		wall_top_pixel;
+	int		wall_bottom_pixel;
+	int		cord[2];
+
+	cord[0] = i;
+	project_wallheight = (TILE_SIZE / (data->ray->distance
+				* cos(data->ray->ray_angle - data->player->rotation_agnles)))
+		* ((WINDOW_WIDTH / 2) / tan(data->fov / 2));
+	wall_top_pixel = (int)((WINDOW_HEIGHT / 2) - (project_wallheight / 2));
+	wall_bottom_pixel = (int)((WINDOW_HEIGHT / 2) + (project_wallheight / 2));
+	if (wall_top_pixel < 0)
+		wall_top_pixel = 0;
+	if (wall_bottom_pixel > WINDOW_HEIGHT)
+		wall_bottom_pixel = WINDOW_HEIGHT;
+	cord[1] = wall_top_pixel;
+	draw_text(data, cord, wall_bottom_pixel, project_wallheight);
 }

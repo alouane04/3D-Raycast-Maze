@@ -1,10 +1,10 @@
-SRC = main.c  parsing_stock.c parsing_utils.c check_map.c check_color_texture.c bonus/draw_mini_map.c mlx_utils.c data_init.c intersectionxy.c wall_projections.c
+SRC = main.c parse/parsing_stock.c parse/parsing_utils.c parse/check_map.c parse/check_color_texture.c bonus/draw_mini_map.c mlx_utils.c data_init.c intersectionxy.c wall_projections.c player_moves.c
 
 NAME = cub3D
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror -Imlx
+FLAGS = -Wall -Wextra -Werror -Imlx -fsanitize=address
 
 OBJ = $(SRC:.c=.o)
 
@@ -25,6 +25,6 @@ clean:
 
 fclean:
 	make -C libft fclean
-	rm -rf $(NAME) $(OBJ) draw_mini_map.o cub3D.dSYM
+	rm -rf $(NAME) $(OBJ) draw_mini_map.o check_color_texture.o check_map.o parsing_stock.o parsing_utils.o
 
 re: fclean all

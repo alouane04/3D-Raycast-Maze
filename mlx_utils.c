@@ -1,55 +1,71 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mlx_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/13 18:42:05 by ariahi            #+#    #+#             */
+/*   Updated: 2023/01/13 19:21:25 by ariahi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->image->addr + (y * data->image->line_length + x * (data->image->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	dst = data->image->addr + (y * data->image->line_length + x
+			* (data->image->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
-void move_player(t_data *data,double rot_angle, int dir)
+int	create_rgb(int r, int g, int b)
 {
-	int nextx;
-    int nexty;
-	int next2x;
-    int next2y;
-
-	nextx = ((data->player->x - 3 ) + cos(rot_angle) * (data->player->walkSpeed) * dir) / TILE_SIZE;
-	nexty = ((data->player->y - 3) - sin(rot_angle) * (data->player->walkSpeed) * dir) / TILE_SIZE;
-	next2x = ((data->player->x + 3 ) + cos(rot_angle) * (data->player->walkSpeed) * dir) / TILE_SIZE;
-	next2y = ((data->player->y + 3) - sin(rot_angle) * (data->player->walkSpeed) * dir) / TILE_SIZE;
-    if(data->input->map[nexty][nextx] != '1' && data->input->map[next2y][next2x] != '1' 
-			&& data->input->map[nexty][next2x] != '1' && data->input->map[next2y][nextx] != '1')
-    {
-        data->player->x = data->player->x + cos(rot_angle) * data->player->walkSpeed * dir;
-        data->player->y = data->player->y - sin(rot_angle) * data->player->walkSpeed * dir;
-    }
+	return (r << 16 | g << 8 | b);
 }
 
-int handle_keyPress(int keynum, t_data *data)
+int	handle_key_press(int keynum, t_data *data)
 {
+	data->player->rotation_agnles = solve_angle(data->player->rotation_agnles);
 	if (keynum == ESC_KEY)
 	{
 		mlx_destroy_image(data->mlx, data->image->img);
 		mlx_destroy_window(data->mlx, data->win);
 		exit(0);
 	}
-    if (keynum == RIGHT_R)
-        data->player->rotationAgnles = fmod((data->player->rotationAgnles + (2 * M_PI)
-                                        - data->player->turnSpeed) ,(2 * M_PI)) ;
-    if (keynum == LEFT_R)
-        data->player->rotationAgnles = fmod((data->player->rotationAgnles
-                                        + data->player->turnSpeed) ,(2 * M_PI)) ;
-    if (keynum == UP_M)
-		move_player(data, fmod((data->player->rotationAgnles) ,(2 * M_PI)), 1);
+	if (keynum == UP_M)
+		data->key->w = 1;
 	if (keynum == DOWN_M)
-		move_player(data, fmod((data->player->rotationAgnles) ,(2 * M_PI)), -1);
-	if (keynum == LEFT_M)
-		move_player(data, fmod((data->player->rotationAgnles + M_PI_2) ,(2 * M_PI)), 1);
+		data->key->s = 1;
 	if (keynum == RIGHT_M)
-		move_player(data, fmod((data->player->rotationAgnles - M_PI_2) ,(2 * M_PI)), 1);
-	return(0);
+		data->key->d = 1;
+	if (keynum == LEFT_M)
+		data->key->a = 1;
+	if (keynum == RIGHT_R)
+		data->key->right = 1;
+	if (keynum == LEFT_R)
+		data->key->left = 1;
+	return (0);
+}
+
+int	handle_keyrelease(int keynum, t_data *data)
+{
+	data->player->rotation_agnles = solve_angle(data->player->rotation_agnles);
+	if (keynum == UP_M)
+		data->key->w = 0;
+	if (keynum == DOWN_M)
+		data->key->s = 0;
+	if (keynum == RIGHT_M)
+		data->key->d = 0;
+	if (keynum == LEFT_M)
+		data->key->a = 0;
+	if (keynum == RIGHT_R)
+		data->key->right = 0;
+	if (keynum == LEFT_R)
+		data->key->left = 0;
+	return (0);
 }
 
 void	free_data(t_data *data)
@@ -70,11 +86,13 @@ void	free_data(t_data *data)
 	while (++i < 4)
 	{
 		if (data->texture[i])
+		{
 			if (data->texture[i]->img)
 			{
 				mlx_destroy_image(data->mlx, data->texture[i]->img);
 				free(data->texture[i]);
 			}
+		}
 	}
 	free_input(data->input);
 }
