@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/14 13:21:43 by eel-moun          #+#    #+#             */
+/*   Updated: 2023/01/14 13:21:48 by eel-moun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "get_next_line.h"
 
@@ -40,7 +51,8 @@ char	*ft_strjoin_utils(char *s1, char *s2)
 	}
 	if (!s1 || !s2)
 		return (NULL);
-	str = malloc((ft_strlen_utils(s1) + ft_strlen_utils(s2) + 1) * sizeof(char));
+	str = malloc((ft_strlen_utils(s1)
+				+ ft_strlen_utils(s2) + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	i = -1;

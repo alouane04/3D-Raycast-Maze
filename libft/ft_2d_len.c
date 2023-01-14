@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_2d_len.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 16:44:59 by ariahi            #+#    #+#             */
-/*   Updated: 2022/12/31 16:59:43 by ariahi           ###   ########.fr       */
+/*   Updated: 2023/01/14 13:22:16 by eel-moun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_2d_len(char **av)
 
 	len = 0;
 	if (!av)
-		return(-1);
+		return (-1);
 	while (av[len])
 		len++;
 	return (len);

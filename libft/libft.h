@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 10:49:10 by ariahi            #+#    #+#             */
-/*   Updated: 2023/01/02 10:44:39 by ariahi           ###   ########.fr       */
+/*   Updated: 2023/01/14 13:20:53 by eel-moun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,6 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
  * It is equivalent to `(ft_isupper(c) || ft_islower(c))`.
  */
 int			ft_isalpha(int c);
-
 
 /* Checks for a digit character (0 through 9).*/
 int			ft_isdigit(int c);

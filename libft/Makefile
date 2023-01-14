@@ -6,7 +6,7 @@
 #    By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/14 15:25:14 by ariahi            #+#    #+#              #
-#    Updated: 2023/01/02 10:37:31 by ariahi           ###   ########.fr        #
+#    Updated: 2023/01/13 20:07:10 by ariahi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ clean:
 	rm -rf $(Obj)
 
 fclean: clean
-	rm -rf $(Name)
+	rm -rf $(Name) get_next_line_utils.o get_next_line.o
 
 re: fclean all
 
