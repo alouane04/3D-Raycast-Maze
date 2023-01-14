@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 18:00:29 by ariahi            #+#    #+#             */
-/*   Updated: 2023/01/13 19:34:40 by ariahi           ###   ########.fr       */
+/*   Updated: 2023/01/13 19:52:47 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	generate_3d_projection(t_data *data, int i)
 
 	cord[0] = i;
 	project_wallheight = (TILE_SIZE / (data->ray->distance
-				* cos(data->ray->ray_angle - data->player->rotation_agnles)))
+				* cos(data->ray->ray_angle - data->player->rotation_angles)))
 		* ((WINDOW_WIDTH / 2) / tan(data->fov / 2));
 	wall_top_pixel = (int)((WINDOW_HEIGHT / 2) - (project_wallheight / 2));
 	wall_bottom_pixel = (int)((WINDOW_HEIGHT / 2) + (project_wallheight / 2));

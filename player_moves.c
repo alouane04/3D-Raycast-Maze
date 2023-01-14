@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 18:06:48 by ariahi            #+#    #+#             */
-/*   Updated: 2023/01/13 19:21:08 by ariahi           ###   ########.fr       */
+/*   Updated: 2023/01/13 20:50:28 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ static int	check_wall2(t_data *data, double x, double y)
 		|| data->input->map[j][i] == '\0' || data->input->map[h][k] == '1'
 			|| data->input->map[h][k] == ' ' || data->input->map[h][k] == '\0')
 		return (0);
+	if (data->input->map[j][k] == '1' || data->input->map[j][k] == ' '
+		|| data->input->map[j][k] == '\0' || data->input->map[h][i] == '1'
+			|| data->input->map[h][i] == ' ' || data->input->map[h][i] == '\0')
+		return (0);
 	return (1);
 }
 
@@ -47,16 +51,16 @@ void	get_next_pos(t_data *data, double *x, double *y, int dir)
 {
 	if (data->key->d || data->key->a)
 	{
-		*x += cos(data->player->rotation_agnles + (dir * M_PI_2))
+		*x += cos(data->player->rotation_angles + (dir * M_PI_2))
 			* data->player->walk_speed;
-		*y -= sin(data->player->rotation_agnles + (dir * M_PI_2))
+		*y -= sin(data->player->rotation_angles + (dir * M_PI_2))
 			* data->player->walk_speed;
 	}
 	if (data->key->s || data->key->w)
 	{
-		*x += cos(data->player->rotation_agnles)
+		*x += cos(data->player->rotation_angles)
 			* dir * data->player->walk_speed;
-		*y -= sin(data->player->rotation_agnles)
+		*y -= sin(data->player->rotation_angles)
 			* dir * data->player->walk_speed;
 	}
 }
@@ -77,9 +81,9 @@ int	move_player(t_data *data)
 	if (data->key->a)
 		get_next_pos(data, &nextx, &nexty, -1);
 	if (data->key->right)
-		data->player->rotation_agnles += data->player->turn_speed;
+		data->player->rotation_angles += data->player->turn_speed;
 	if (data->key->left)
-		data->player->rotation_agnles -= data->player->turn_speed;
+		data->player->rotation_angles -= data->player->turn_speed;
 	if (check_wall2(data, nextx, nexty))
 	{
 		data->player->x = nextx;

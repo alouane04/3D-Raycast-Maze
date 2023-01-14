@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 18:38:44 by ariahi            #+#    #+#             */
-/*   Updated: 2023/01/13 19:38:26 by ariahi           ###   ########.fr       */
+/*   Updated: 2023/01/13 20:52:13 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ int	set_player(t_data *data, char c, int x, int y)
 		return (1);
 	data->player->x = x * TILE_SIZE + TILE_SIZE / 2;
 	data->player->y = y * TILE_SIZE + TILE_SIZE / 2;
-	data->player->walk_speed = TILE_SIZE / 8;
-	data->player->turn_speed = 15 * (M_PI / 180);
+	data->player->walk_speed = TILE_SIZE / 12;
+	data->player->turn_speed = 5 * (M_PI / 180);
 	if (c == 'N')
-		data->player->rotation_agnles = M_PI / 2;
+		data->player->rotation_angles = M_PI / 2;
 	if (c == 'W')
-		data->player->rotation_agnles = M_PI;
+		data->player->rotation_angles = M_PI;
 	if (c == 'S')
-		data->player->rotation_agnles = 3 * (M_PI / 2);
+		data->player->rotation_angles = 3 * (M_PI / 2);
 	if (c == 'E')
-		data->player->rotation_agnles = 0;
+		data->player->rotation_angles = 0;
 	return (0);
 }
 
@@ -87,34 +87,7 @@ void	ray_init(t_ray *ray, float angle)
 	ray->was_hit_vertical = 0;
 }
 
-int	texture_img(t_data *data)
-{
-	int	bits_per_pixel;
-	int	line_length;
-	int	endian;
-	int	i;
-
-	i = -1;
-	while (++i < 4)
-	{
-		data->texture[i] = ft_calloc(1, sizeof(t_texturs));
-		if (data->texture[i])
-		{
-			data->texture[i]->img = mlx_xpm_file_to_image(data->mlx,
-					data->input->no,
-					&data->texture[i]->width, &data->texture[i]->height);
-			if (!data->texture[i]->img)
-				return (1);
-			data->texture[i]->addr = mlx_get_data_addr(data->texture[i]->img,
-					&bits_per_pixel, &line_length, &endian);
-		}
-		else
-			return (1);
-	}
-	return (0);
-}
-
-int		data_init(t_data *data, t_input *input)
+int	data_init(t_data *data, t_input *input)
 {
 	data->input = input;
 	set_row_col(data);
@@ -135,9 +108,9 @@ int		data_init(t_data *data, t_input *input)
 	data->image->img = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!data->image->img)
 		return (1);
-	data->image->addr = mlx_get_data_addr(data->image->img
-			, &data->image->bits_per_pixel, &data->image->line_length
-			, &data->image->endian);
+	data->image->addr = mlx_get_data_addr(data->image->img,
+			&data->image->bits_per_pixel, &data->image->line_length,
+			&data->image->endian);
 	if (texture_img(data))
 		return (1);
 	return (0);

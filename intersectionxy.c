@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 18:29:21 by ariahi            #+#    #+#             */
-/*   Updated: 2023/01/13 19:21:57 by ariahi           ###   ########.fr       */
+/*   Updated: 2023/01/14 09:08:05 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void	horizontal_intersection(t_data *data)
 	wallhitxy(data, &hitx, &hity, 'x');
 	stepxy(data, &stepx, &stepy, 'x');
 	while (hitx >= 0 && hity >= 0
-		&& hitx <= WINDOW_WIDTH && hity <= WINDOW_HEIGHT)
+		&& hitx <= (data->num_cols * TILE_SIZE)
+		&& hity <= (data->num_rows * TILE_SIZE))
 	{
 		if (has_wall_at(data, (int)hitx / TILE_SIZE,
 				(int)hity / TILE_SIZE, 'h'))
@@ -78,10 +79,11 @@ void	horizontal_intersection(t_data *data)
 		hitx += stepx;
 		hity += stepy;
 	}
-	if (hitx > WINDOW_WIDTH || hity > WINDOW_HEIGHT)
+	if (hitx > (data->num_cols * TILE_SIZE)
+		|| hity > (data->num_rows * TILE_SIZE))
 	{
-		data->ray->wall_hithx = WINDOW_WIDTH;
-		data->ray->wall_hithy = WINDOW_HEIGHT;
+		data->ray->wall_hithx = data->num_cols * TILE_SIZE;
+		data->ray->wall_hithy = data->num_rows * TILE_SIZE;
 	}
 }
 
@@ -92,10 +94,11 @@ void	vertical_intersection(t_data *data)
 	float	hitx;
 	float	hity;
 
-	wallhitxy(data, &hitx, &hity,'y');
+	wallhitxy(data, &hitx, &hity, 'y');
 	stepxy(data, &stepx, &stepy, 'y');
 	while (hitx >= 0 && hity >= 0
-		&& hitx <= WINDOW_WIDTH && hity <= WINDOW_HEIGHT)
+		&& hitx <= (data->num_cols * TILE_SIZE)
+		&& hity <= (data->num_rows * TILE_SIZE))
 	{
 		if (has_wall_at(data, (int)hitx / TILE_SIZE,
 				(int)hity / TILE_SIZE, 'v'))
@@ -107,10 +110,11 @@ void	vertical_intersection(t_data *data)
 		hitx += stepx;
 		hity += stepy;
 	}
-	if (hitx > WINDOW_WIDTH || hity > WINDOW_HEIGHT)
+	if (hitx > (data->num_cols * TILE_SIZE)
+		|| hity > (data->num_rows * TILE_SIZE))
 	{
-		data->ray->wall_hitvx = WINDOW_WIDTH;
-		data->ray->wall_hitvy = WINDOW_HEIGHT;
+		data->ray->wall_hitvx = (data->num_cols * TILE_SIZE);
+		data->ray->wall_hitvy = (data->num_rows * TILE_SIZE);
 	}
 }
 
@@ -119,9 +123,9 @@ void	distance(t_data *data)
 	float	dsth;
 	float	dstv;
 
-	dsth = sqrt(pow(data->ray->wall_hithx - data->player->x, 2) 
+	dsth = sqrt(pow(data->ray->wall_hithx - data->player->x, 2)
 			+ pow(data->ray->wall_hithy - data->player->y, 2));
-	dstv = sqrt(pow(data->ray->wall_hitvx - data->player->x, 2) 
+	dstv = sqrt(pow(data->ray->wall_hitvx - data->player->x, 2)
 			+ pow(data->ray->wall_hitvy - data->player->y, 2));
 	if (dsth < dstv)
 	{

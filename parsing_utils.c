@@ -6,11 +6,11 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 18:46:58 by ariahi            #+#    #+#             */
-/*   Updated: 2023/01/13 19:10:47 by ariahi           ###   ########.fr       */
+/*   Updated: 2023/01/13 20:28:13 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "cub3D.h"
 
 void	free_input(t_input *input)
 {

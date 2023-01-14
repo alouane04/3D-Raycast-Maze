@@ -6,11 +6,11 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 19:10:38 by ariahi            #+#    #+#             */
-/*   Updated: 2023/01/13 19:10:43 by ariahi           ###   ########.fr       */
+/*   Updated: 2023/01/13 20:28:09 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "cub3D.h"
 
 void	stock_map(t_list *lst, t_input *input)
 {

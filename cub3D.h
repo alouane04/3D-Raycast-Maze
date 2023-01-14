@@ -63,7 +63,7 @@ typedef struct s_player
 {
 	double	x;
 	double	y;
-	double	rotation_agnles;
+	double	rotation_angles;
 	double	walk_speed;
 	double	turn_speed;
 }			t_player;
@@ -124,7 +124,6 @@ int		stock_input(int fd, t_input *input);
 char	*stock_line(char const *s, int len);
 int		check_color(char *str, t_input *input);
 void	free_input(t_input *input);
-t_list	*stock_lst(int fd, char *str, t_list *lst);
 int		check_map(char *str, t_input *input, int fd);
 int		check_if_empty(t_input *input);
 void	stock_map(t_list *lst, t_input *input);
@@ -132,7 +131,7 @@ int		get_biggest_line(t_list *lst);
 void	set_row_col(t_data *data);
 
 int		create_rgb(int r, int g, int b);
-void	render_player(t_data *data, int x,int y,int color);
+void	render_player(t_data *data, int x, int y, int color);
 void	draw_mini_map(t_data *data, int x, int y, int color);
 int		render_map(t_data *data);
 int		set_player(t_data *data, char c, int x, int y);
@@ -155,5 +154,6 @@ void	vertical_intersection(t_data *data);
 void	distance(t_data *data);
 void	generate_3d_projection(t_data *data, int i);
 int		texture_img(t_data *data);
+void	free_mlx(t_data *data);
 
 #endif

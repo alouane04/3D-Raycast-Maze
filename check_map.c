@@ -6,11 +6,11 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 18:50:52 by ariahi            #+#    #+#             */
-/*   Updated: 2023/01/13 19:10:29 by ariahi           ###   ########.fr       */
+/*   Updated: 2023/01/13 20:28:26 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "cub3D.h"
 
 int	check_map_name(char *name)
 {

@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 18:42:05 by ariahi            #+#    #+#             */
-/*   Updated: 2023/01/13 19:21:25 by ariahi           ###   ########.fr       */
+/*   Updated: 2023/01/14 10:43:08 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,10 @@ int	create_rgb(int r, int g, int b)
 
 int	handle_key_press(int keynum, t_data *data)
 {
-	data->player->rotation_agnles = solve_angle(data->player->rotation_agnles);
+	data->player->rotation_angles = solve_angle(data->player->rotation_angles);
 	if (keynum == ESC_KEY)
 	{
-		mlx_destroy_image(data->mlx, data->image->img);
-		mlx_destroy_window(data->mlx, data->win);
+		free_data(data);
 		exit(0);
 	}
 	if (keynum == UP_M)
@@ -52,7 +51,7 @@ int	handle_key_press(int keynum, t_data *data)
 
 int	handle_keyrelease(int keynum, t_data *data)
 {
-	data->player->rotation_agnles = solve_angle(data->player->rotation_agnles);
+	data->player->rotation_angles = solve_angle(data->player->rotation_angles);
 	if (keynum == UP_M)
 		data->key->w = 0;
 	if (keynum == DOWN_M)
@@ -70,29 +69,15 @@ int	handle_keyrelease(int keynum, t_data *data)
 
 void	free_data(t_data *data)
 {
-	int	i;
-
-	i = -1;
-	if (data->image->img)
-		mlx_destroy_image(data->mlx, data->image->img);
-	if (data->image)
-		free(data->image);
-	if (data->win)
-		mlx_destroy_window(data->win, data->mlx);
-	if (data->mlx)
-		free(data->mlx);
+	if (data->key)
+		free(data->key);
+	if (data->ray)
+		free(data->ray);
 	if (data->player)
 		free(data->player);
-	while (++i < 4)
-	{
-		if (data->texture[i])
-		{
-			if (data->texture[i]->img)
-			{
-				mlx_destroy_image(data->mlx, data->texture[i]->img);
-				free(data->texture[i]);
-			}
-		}
-	}
+	if (data->mlx)
+		free_mlx(data);
+	if (data->image)
+		free(data->image);
 	free_input(data->input);
 }
