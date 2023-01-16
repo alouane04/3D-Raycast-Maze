@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   _bonus_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:51:59 by ariahi            #+#    #+#             */
-/*   Updated: 2023/01/14 10:50:59 by eel-moun         ###   ########.fr       */
+/*   Updated: 2023/01/14 13:24:37 by eel-moun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "_bonus_cub3D.h"
 
 int	exit_prog(t_data *data)
 {
@@ -47,6 +47,7 @@ int	start_game(t_data *data)
 	render_back_ground(data);
 	cast_all_rays(data);
 	move_player(data);
+	render_map(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->image->img, 0, 0);
 	return (0);
 }
@@ -73,6 +74,7 @@ int	main(int ac, char **av)
 	mlx_hook(data.win, 02, 1L << 0, &handle_key_press, &data);
 	mlx_hook(data.win, 03, 2L << 0, &handle_keyrelease, &data);
 	mlx_hook(data.win, 17, 2, exit_prog, &data);
+	mlx_hook(data.win, 06, 1L << 6, mouse, &data);
 	mlx_loop_hook(data.mlx, start_game, &data);
 	mlx_loop(data.mlx);
 	return (free_data(&data), 0);

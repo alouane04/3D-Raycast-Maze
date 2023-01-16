@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strspn.c                                        :+:      :+:    :+:   */
+/*   ft_2d_len.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 22:58:06 by ariahi            #+#    #+#             */
-/*   Updated: 2022/12/30 17:36:55 by ariahi           ###   ########.fr       */
+/*   Created: 2022/12/31 16:44:59 by ariahi            #+#    #+#             */
+/*   Updated: 2023/01/14 13:22:16 by eel-moun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strspn(const char *s, const char *charset)
+int	ft_2d_len(char **av)
 {
-	size_t	i;
+	int	len;
 
-	i = 0;
-	while (s[i] && ft_strchr(charset, s[i]))
-		i++;
-	return (i);
+	len = 0;
+	if (!av)
+		return (-1);
+	while (av[len])
+		len++;
+	return (len);
 }

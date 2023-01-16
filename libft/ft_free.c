@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strspn.c                                        :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 22:58:06 by ariahi            #+#    #+#             */
-/*   Updated: 2022/12/30 17:36:55 by ariahi           ###   ########.fr       */
+/*   Created: 2022/12/31 16:49:04 by ariahi            #+#    #+#             */
+/*   Updated: 2022/12/31 16:49:13 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strspn(const char *s, const char *charset)
+void	ft_free(char **s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (s[i] && ft_strchr(charset, s[i]))
-		i++;
-	return (i);
+	while (s[i])
+		free(s[i++]);
+	free(s);
 }
