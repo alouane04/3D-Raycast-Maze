@@ -4,10 +4,10 @@ F 2,1,100
 
 
 
-NO ./texturs/3.xpm
-SO ./texturs/w2.xpm
-WE ./texturs/1.xpm
-EA ./texturs/w4.xpm
+NO ./texturs/1.xpm
+SO ./texturs/2.xpm
+WE ./texturs/3.xpm
+EA ./texturs/4.xpm
 
 
         1111111111111111111111111

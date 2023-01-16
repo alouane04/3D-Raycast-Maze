@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_moves.c                                     :+:      :+:    :+:   */
+/*   _bonus_player_moves.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 18:06:48 by ariahi            #+#    #+#             */
-/*   Updated: 2023/01/14 13:41:07 by eel-moun         ###   ########.fr       */
+/*   Updated: 2023/01/14 13:41:52 by eel-moun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "_bonus_cub3D.h"
 
 int	check_wall(t_data *data, double x, double y)
 {
@@ -88,6 +88,25 @@ int	move_player(t_data *data)
 	{
 		data->player->x = nextx;
 		data->player->y = nexty;
+	}
+	return (0);
+}
+
+int	mouse(int x, int y, t_data *data)
+{
+	if (!data->key->left && !data->key->right)
+	{
+		if (x < WINDOW_WIDTH && x > 0 && y > 0 && y < WINDOW_HEIGHT)
+		{
+			if (x > (WINDOW_WIDTH / 2))
+				data->player->rotation_angles
+					= solve_angle(data->player->rotation_angles
+						+ (2 * M_PI) / (WINDOW_WIDTH / 2));
+			if (x < (WINDOW_WIDTH / 2))
+				data->player->rotation_angles
+					= solve_angle(data->player->rotation_angles
+						- (2 * M_PI) / (WINDOW_WIDTH / 2));
+		}
 	}
 	return (0);
 }

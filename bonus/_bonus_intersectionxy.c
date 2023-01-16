@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersectionxy.c                                   :+:      :+:    :+:   */
+/*   _bonus_intersectionxy.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 18:29:21 by ariahi            #+#    #+#             */
-/*   Updated: 2023/01/14 13:41:30 by eel-moun         ###   ########.fr       */
+/*   Updated: 2023/01/14 13:35:33 by eel-moun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "_bonus_cub3D.h"
 
 void	wallhitxy(t_data *data, float *hitx, float *hity, char c)
 {

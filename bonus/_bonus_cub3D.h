@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                           :+:      :+:    :+:   */
+/*   _bonus_cub3D.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 08:43:30 by ariahi            #+#    #+#             */
-/*   Updated: 2023/01/05 08:59:36 by ariahi           ###   ########.fr       */
+/*   Created: 2023/01/14 13:42:38 by eel-moun          #+#    #+#             */
+/*   Updated: 2023/01/14 13:42:48 by eel-moun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef _BONUS_CUB3D_H
+# define _BONUS_CUB3D_H
 
 # include <unistd.h>
 # include <stdio.h>
 # include <string.h>
 # include <fcntl.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include <errno.h>
 # include <mlx.h>
 # include <math.h>
@@ -130,6 +130,9 @@ void	stock_map(t_list *lst, t_input *input);
 int		get_biggest_line(t_list *lst);
 void	set_row_col(t_data *data);
 
+void	render_player(t_data *data, int x, int y, int color);
+void	draw_mini_map(t_data *data, int x, int y, int color);
+int		render_map(t_data *data);
 int		create_rgb(int r, int g, int b);
 int		set_player(t_data *data, char c, int x, int y);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -152,6 +155,7 @@ void	distance(t_data *data);
 void	generate_3d_projection(t_data *data, int i);
 int		texture_img(t_data *data);
 void	free_mlx(t_data *data);
+int		mouse(int x, int y, t_data *data);
 void	check_overboard(float hitx, float hity, t_data *data, char c);
 
 #endif
