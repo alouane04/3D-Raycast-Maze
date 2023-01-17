@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eel-moun <eel-moun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 10:49:10 by ariahi            #+#    #+#             */
-/*   Updated: 2023/01/14 13:20:53 by eel-moun         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:10:23 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <unistd.h>
 # include <fcntl.h>
 
+/*
+ * A struct that represents a node in a linked list.
+ * A NULL pointer is considered as an empty linked list.
+ */
 typedef struct s_list
 {
 	void			*content;
@@ -379,5 +383,12 @@ int			ft_2d_len(char **av);
  * or if an error occured.
  */
 char		*get_next_line(int fd);
+
+/*
+ * This function mimics the real `printf` but is limited:
+ * - Supports these specifiers: 'cspdiuxX%'
+ * - Supports these flags: '-0#+ '
+ */
+int			ft_printf(const char *str, ...);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/14 15:25:14 by ariahi            #+#    #+#              #
-#    Updated: 2023/01/13 20:07:10 by ariahi           ###   ########.fr        #
+#    Updated: 2023/01/17 14:14:06 by ariahi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ Src = ft_strlen.c ft_strlcpy.c ft_strlcat.c ft_strchr.c ft_strrchr.c ft_strnstr.
 		ft_strcspn.c ft_strnlen.c ft_lstput_orderly.c lst_put_orderly_sorted.c\
 	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c\
 ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_atoll.c ft_lstremove.c ft_strspn.c lst_put_orderly_sorted_2.c ft_2d_len.c ft_free.c\
- gnl/get_next_line.c gnl/get_next_line_utils.c
+	gnl/get_next_line.c gnl/get_next_line_utils.c ft_printf/ft_printf.c ft_printf/ft_put_D.c ft_printf/ft_put_X.c
 
 Cc = gcc
 Flags = -Wall -Wextra -Werror -g
@@ -33,6 +33,9 @@ $(Name): $(Obj)
 all: $(Name)
 
 gnl/%.o: gnl/%.c 
+	$(Cc) $(Flags) -c -o $@ $< 
+
+ft_printf/%.o: ft_printf/%.c 
 	$(Cc) $(Flags) -c -o $@ $< 
 
 %.o: %.c libft.h
