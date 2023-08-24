@@ -38,9 +38,3 @@ make && ./Cub3d [maps/map.cub]
 - [Ray casting vs ray tracing](https://www.techopedia.com/definition/21614/ray-casting#:~:text=Ray%20casting%20is%20distinct%20from,algorithms%20such%20as%20ray%20tracing.)
 - [How ray casting works ?](https://en.wikipedia.org/wiki/Ray_casting#:~:text=The%20idea%20behind%20ray%20casting,eye%20sees%20through%20that%20pixel.)
 
-
-
-
-## Support
-
-For support, email alouane04@gmail.com
